@@ -1,3 +1,5 @@
+clear;
+
 % generate input
 patterns = sepdata();
 
@@ -16,4 +18,4 @@ targets = targets(:, permute);
 % patterns(1, find(targets<0)), ...
 % patterns(2, find(targets<0)), '+');
 
-delta(patterns, targets, 20)
+delta(patterns, targets, 50)
