@@ -1,8 +1,8 @@
 % computes blah blah
 function [ output_args ] = delta(patterns, targets, epochs)
 
-[insize, ndata] = size(patterns);
-[outsize, ndata] = size(targets);
+[insize, ndata] = size(patterns)
+[outsize, ndata] = size(targets)
 
 W = randn(outsize, insize + 1);
 eta = 0.001;

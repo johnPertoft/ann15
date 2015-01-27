@@ -3,4 +3,8 @@ clear;
 patterns = eye(8) * 2 - 1;
 targets = patterns;
 
-backprop(patterns, targets, 10000, 3);
+eta = 0.001;
+epochs = 5000;
+hidden = 10;
+
+backprop(patterns, targets, epochs, hidden, eta);
