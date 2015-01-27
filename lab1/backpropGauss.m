@@ -1,5 +1,5 @@
 % Generalized delta rule
-function [ out ] = backprop(patterns, targets, epochs, hidden, eta)
+function [ out ] = backpropGauss(patterns, targets, epochs, hidden, eta, x, y, gridsize)
 [insize, ndata] = size(patterns);
 [outsize, ndata] = size(targets);
 
@@ -33,9 +33,10 @@ for epoch=1:epochs
     v = v + dv .* eta;
     
     % see progress
-    error(epoch) = sum(sum(abs(sign(out) - targets)./2));
-    disp(error(epoch));
+    %error(epoch) = sum(sum(abs(sign(out) - targets)./2));
+    %disp(error(epoch));
+    
+    plotGauss(x, y, out, gridsize);
+    pause(0.05);
 end
-    plot(error);
 end
-
