@@ -33,10 +33,12 @@ for epoch=1:epochs
     v = v + dv .* eta;
     
     % see progress
-    %error(epoch) = sum(sum(abs(sign(out) - targets)./2));
-    %disp(error(epoch));
+    error(epoch) = sum(sum(abs(out - targets)));
+    disp(error(epoch));
     
     plotGauss(x, y, out, gridsize);
-    pause(0.05);
+    pause(0.05);            
 end
+figure;
+plot(error);
 end

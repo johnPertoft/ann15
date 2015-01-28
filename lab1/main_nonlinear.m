@@ -16,7 +16,7 @@ patterns = [reshape(xx, 1, ndata); reshape(yy, 1, ndata)];
 
 % Back prop
 eta = 0.1;
-epochs = 1000;
+epochs = 200;
 hidden = 10;
 
 backpropGauss(patterns, targets, epochs, hidden, eta, x, y, gridsize);

@@ -1,5 +1,5 @@
 % Generalized delta rule
-function [ out ] = backpropGeneral(patterns, targets, epochs, hidden, eta, n)
+function [ out, err] = backpropGeneral(patterns, targets, epochs, hidden, eta, n)
 [insize, ndata] = size(patterns);
 outsize = size(targets, 1);
 
@@ -40,8 +40,10 @@ for epoch=1:epochs
     out_approx = 2 ./ (1+exp(-oin_approx)) - 1;
     
     error(epoch) = sum(sum(abs(sign(out_approx) - targets)./2));
-    disp(error(epoch));
+    %disp(error(epoch));
+    err = error(epoch);
+    
 end
-    plot(error);
+    %plot(error);
 end
 

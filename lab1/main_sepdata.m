@@ -12,10 +12,4 @@ permute = randperm(200);
 patterns = patterns(:, permute);
 targets = targets(:, permute);
 
-% temporary plot
-% plot (patterns(1, find(targets>0)), ...
-% patterns(2, find(targets>0)), '*', ...
-% patterns(1, find(targets<0)), ...
-% patterns(2, find(targets<0)), '+');
-
 delta(patterns, targets, 50)

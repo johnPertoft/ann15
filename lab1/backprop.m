@@ -1,5 +1,5 @@
 % Generalized delta rule
-function [ out ] = backprop(patterns, targets, epochs, hidden, eta)
+function [ out, hout ] = backprop(patterns, targets, epochs, hidden, eta)
 [insize, ndata] = size(patterns);
 [outsize, ndata] = size(targets);
 
@@ -16,7 +16,7 @@ dv = 0;
 for epoch=1:epochs
     % forward pass
     hin = w * X;    
-    hout = [2 ./ (1+exp(-hin)) - 1 ; ones(1,ndata)];
+    hout = [2 ./ (1+exp(-hin)) - 1 ; ones(1,ndata)];    
     oin = v * hout;
     out = 2 ./ (1+exp(-oin)) - 1;
     
@@ -30,8 +30,8 @@ for epoch=1:epochs
     dv = (dv .* alpha) - (delta_o * hout') .* (1-alpha);
     
     w = w + dw .* eta;
-    v = v + dv .* eta;
-    
+    v = v + dv .* eta;    
+
     % see progress
     error(epoch) = sum(sum(abs(sign(out) - targets)./2));
     disp(error(epoch));

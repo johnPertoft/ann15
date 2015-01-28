@@ -12,8 +12,8 @@ permute = randperm(200);
 patterns = patterns(:, permute);
 targets = targets(:, permute);
 
-eta = 0.001;
-epochs = 10000;
+eta = 0.01;
+epochs = 100;
 hidden = 10;
 
-backprop(patterns, targets, epochs, hidden, eta)
+backprop(patterns, targets, epochs, hidden, eta);

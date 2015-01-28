@@ -23,7 +23,7 @@ for i=1:epochs
         [p(1), p(1)]*k + [-p(2), p(2)]/l, ...
         [p(2), p(2)]*k + [p(1), -p(1)]/l, '-');
     
-    pause(0.2);
+    %pause(0.2);
     drawnow;
     %%%
 end
