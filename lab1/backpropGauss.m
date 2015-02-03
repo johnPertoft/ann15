@@ -19,9 +19,11 @@ for epoch=1:epochs
     hout = [2 ./ (1+exp(-hin)) - 1 ; ones(1,ndata)];
     oin = v * hout;
     out = 2 ./ (1+exp(-oin)) - 1;
+    %out = 0.3 .* oin;
     
     % backward pass
     delta_o = (out - targets) .* ((1 + out) .* (1 - out)) * 0.5;
+    %delta_o = (out - targets) .* 0.3; % new derivative function here
     delta_h = (v' * delta_o) .* ((1 + hout) .* (1 - hout)) * 0.5;
     delta_h = delta_h(1:hidden, :);
     
