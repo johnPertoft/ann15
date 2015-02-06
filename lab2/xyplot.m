@@ -3,6 +3,9 @@ function mserr=xyplot(desired,estimated,titletext);
 % Plots desired and estimated values on x versus y axis
 % The root mean square error is returned
 
+desired
+estimated
+
 x=min(desired):0.1:max(desired);
 plot(desired,estimated,'+',x,x);
 mserr=sqrt(sum((desired-estimated).^2)/length(desired));

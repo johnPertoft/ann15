@@ -2,7 +2,7 @@ clear;
 plotinit;
 
 data = read('cluster');
-units = 6;
+units =15;
 
 vqinit;
 
