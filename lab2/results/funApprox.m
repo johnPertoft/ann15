@@ -8,17 +8,18 @@ clear;
 %xtest = lowPassFilter(xtest);
 %plot(1:size(xtrain(:,1)), xtrain);
 
-units = 20;
+units = 200;
 data = xtrain;
 vqinit;
 singlewinner = 0;
 emiterb
 
-% hold on
-% plot(ytrain(:, 1), ytrain(:, 2), 'r+')
-% hold off
+hold on
+plot(xtest(:, 1), xtest(:, 2), 'r+');
+hold off
 
 Phi = calcPhi(xtrain, m, var);
+%Phi = [Phi, ones(size(Phi(:,1)))] Can we use a bias node here?
 
 d1 = ytrain(:,1);
 d2 = ytrain(:,2);
