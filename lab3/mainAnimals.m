@@ -4,11 +4,11 @@ clear;
 animals
 numAnimals = 32;
 
-epochs = 40;
+epochs = 50;
 eta = 0.2;
-
-W = randn(100, 84);
-maxNeighborhood = 50;
+Wrows = 84;
+W = randn(Wrows, 84);
+maxNeighborhood = round(Wrows/2);
 neighborhood = maxNeighborhood;
 
 for i=1:epochs
@@ -34,7 +34,7 @@ for i=1:epochs
         end
     end
     
-    neighborhood = linearNeighborhood(i, maxNeighborhood, epochs)
+    neighborhood = linearNeighborhood(i, maxNeighborhood, epochs);
 end
 
 pos = [];
