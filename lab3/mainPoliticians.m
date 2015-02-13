@@ -9,7 +9,7 @@ outputheight = 10;
 numNodes = outputwidth * outputheight;
 numPoliticians = 349;
 numVotes = 31;
-maxDist = 3;
+maxDist = 4;
 dist = maxDist;
 W = randn(numNodes, numVotes);
 
@@ -67,15 +67,15 @@ end
 a = ones(1, 100) * 350;
 a(pos) = 1:349
 
-initMpparty;
-p = [mpparty; 0];
-image(p(reshape(a,10,10))+1);
+% initMpparty;
+% p = [mpparty; 0];
+% image(p(reshape(a,10,10))+1);
 
 % initMpsex;
 % p = [mpsex; 0];
 % image(p(reshape(a,10,10))+1);
 
-% initMpdistrict;
-% p = [mpdistrict; 0];
-% image(p(reshape(a,10,10))+1);
+initMpdistrict;
+p = [mpdistrict; 0];
+image(p(reshape(a,10,10))+1);
 
