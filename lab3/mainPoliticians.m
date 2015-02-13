@@ -1,17 +1,30 @@
 clear;
 initVotes;
 
-epochs = 10;
+epochs = 100;
 eta = 0.2;
 
-numNodes = 100;
+outputwidth = 10;
+outputheight = 10;
+numNodes = outputwidth * outputheight;
 numPoliticians = 349;
 numVotes = 31;
-
+maxDist = 3;
+dist = maxDist;
 W = randn(numNodes, numVotes);
 
-%maxNeighborhood = 2;
-%neighborhood = maxNeighborhood;
+% Vector index to grid position mapping
+[x,y] = meshgrid([1:10],[1:10]);
+xpos = reshape(x,1,100);
+ypos = reshape(y,1,100);
+
+% Grid position to vector index mapping
+xyToVecIdx = zeros(10,10);
+for i=1:100
+       x = xpos(i);
+       y = ypos(i);
+       xyToVecIdx(x,y) = i;
+end
 
 for i=1:epochs
     
@@ -24,24 +37,25 @@ for i=1:epochs
         [minDist, rowIndex] = euclideanDistance(W, p);
         
         % update winner
-        for l=1:size(W, 1)
-            % eta = 1 / (i^(1/4)); Uncomment if eta is to change over the epochs
-            
-            % TODO 2 dimensional array, so change!
-            W(l, :) = W(l, :) + neighborhoodGaussian(rowIndex, l, i, epochs, 100) .* eta .* (p - W(l, :));
+        W(rowIndex, :) = W(rowIndex, :) + eta .* (p - W(rowIndex, :));
+        
+        col = xpos(rowIndex);
+        row = ypos(rowIndex);
+        
+        % Update the neighbors
+        neighbors = getNeighborhood(row, col, floor(dist), outputwidth, outputheight);
+        
+        for n=1:size(neighbors, 1)
+           position = neighbors(n,:);
+           idx = xyToVecIdx(position(2), position(1));
+           
+           W(idx, :) = W(idx, :) + (0.5/position(3)) * eta .* (p - W(idx, :));
         end
     end
     
-%     tour = [W;W(1,:)];
-%     plot(tour(:,1),tour(:,2),'b-*',city(:,1),city(:,2),'r+');
-%     title(num2str(neighborhood));
-%     pause(0.1);
+    % Update neighborhood
+    dist = linearNeighborhood(i, maxDist, epochs);
 end
-
-% Plot
-[x,y] = meshgrid([1:10],[1:10]);
-xpos = reshape(x,1,100);
-ypos = reshape(y,1,100);
 
 pos = [];
 for i=1:numPoliticians
@@ -53,9 +67,15 @@ end
 a = ones(1, 100) * 350;
 a(pos) = 1:349
 
-initMpparty;
-p = [mpparty; 0];
+% initMpparty;
+% p = [mpparty; 0];
+% image(p(reshape(a,10,10))+1);
+
+% initMpsex;
+% p = [mpsex; 0];
+% image(p(reshape(a,10,10))+1);
+
+initMpdistrict;
+p = [mpdistrict; 0];
 image(p(reshape(a,10,10))+1);
-
-
 
