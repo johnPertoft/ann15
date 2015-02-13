@@ -4,7 +4,7 @@ cities;
 epochs = 500;
 numCities = 10;
 eta = 0.2;
-numNodes = 15;
+numNodes = 20;
 W = randn(numNodes, 2);
 maxNeighborhood = 2;
 neighborhood = maxNeighborhood;
@@ -26,10 +26,10 @@ for i=1:epochs
         end
     end
     
-%     tour = [W;W(1,:)];
-%     plot(tour(:,1),tour(:,2),'b-*',city(:,1),city(:,2),'r+');
-%     title(num2str(neighborhood));
-%     pause(0.1);
+    tour = [W;W(1,:)];
+    plot(tour(:,1),tour(:,2),'b-*',city(:,1),city(:,2),'r+');
+    title(num2str(neighborhood));
+    pause(0.1);
     
 end
 
