@@ -64,18 +64,24 @@ for i=1:numPoliticians
     pos = [pos; rowIndex];
 end
 
-a = ones(1, 100) * 350;
-a(pos) = 1:349
 
-% initMpparty;
-% p = [mpparty; 0];
-% image(p(reshape(a,10,10))+1);
+% a = ones(1, 100) * 350;
+% a(pos) = 1:349;
 
-% initMpsex;
-% p = [mpsex; 0];
-% image(p(reshape(a,10,10))+1);
+initMpparty;
+p = [mpparty; 0];
+aParty = calcA(pos, mpparty);
+image(p(reshape(aParty,10,10))+1);
 
+figure;
+initMpsex;
+p = [mpsex; 0];
+aSex = calcA(pos, mpsex);
+image(p(reshape(aSex,10,10)));
+
+figure;
 initMpdistrict;
 p = [mpdistrict; 0];
-image(p(reshape(a,10,10))+1);
+aDistrict = calcA(pos, mpdistrict);
+image(p(reshape(aDistrict,10,10)));
 
