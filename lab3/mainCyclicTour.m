@@ -4,7 +4,7 @@ cities;
 epochs = 500;
 numCities = 10;
 eta = 0.2;
-numNodes = 50;
+numNodes = 20;
 W = randn(numNodes, 2);
 maxNeighborhood = 2;
 neighborhood = maxNeighborhood;
