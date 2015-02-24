@@ -9,7 +9,7 @@ pict; % Load data
 W = p1' * p1 + p2' * p2 + p3' * p3;
 
 % Parameters
-iters = 10;
+iters = 100;
 
 % Choose degraded image
 d = p11;

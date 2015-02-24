@@ -7,9 +7,10 @@ pict; % Load data
 N = size(p1, 2);
 W = randn(N, N);
 W = 0.5 * (W + W');
+W = W - diag(diag(W));
 
 % Parameters
-iters = 100000;
+iters = 10000;
 sync = 0;
 
 % Create random distorted image

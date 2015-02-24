@@ -10,7 +10,7 @@ W = p1' * p1 + p2' * p2 + p3' * p3;
 % Parameters
 iters = 10;
 sync = 1;
-start = p3;
+start = p1;
 
 % Choose degraded image
 N = size(p1, 2);

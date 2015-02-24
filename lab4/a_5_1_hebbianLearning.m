@@ -45,24 +45,24 @@ end
 iters
 
 %% B. Find the number of attractors
-% for i=0:2^N-1
-%     
-%    d = vm(abs(de2bi(i, N))); % test vectors 00000000, 0000001, ...11111111
-%    dprev = d;
-%    delta = 1;
-%    
-%    it = 0;
-%    while delta > 0
-%     d = sgn(W * d')';
-%     delta = sum(abs(d - dprev));
-%     dprev = d;
-%     it = it +1;
-%    end
-%    
-%    if sum(ismember(attractors, d, 'rows')) == 0 % New attractor found
-%        attractors = [attractors; d];
-%    end
-% end
-% 
-% t0(attractors)
-% size(attractors)
+for i=0:2^N-1
+    
+   d = vm(abs(de2bi(i, N))); % test vectors 00000000, 0000001, ...11111111
+   dprev = d;
+   delta = 1;
+   
+   it = 0;
+   while delta > 0
+    d = sgn(W * d')';
+    delta = sum(abs(d - dprev));
+    dprev = d;
+    it = it +1;
+   end
+   
+   if sum(ismember(attractors, d, 'rows')) == 0 % New attractor found
+       attractors = [attractors; d];
+   end
+end
+
+t0(attractors)
+size(attractors)

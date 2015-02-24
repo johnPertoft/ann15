@@ -9,21 +9,22 @@ pict; % Load data
 W = p1' * p1 + p2' * p2 + p3' * p3;
 
 % Parameters
-iters = 100000;
+iters = 1500;
 
 % Choose degraded image
 %d = p11;
-d = p8;
+d = p22;
 
 for i=1:iters
    idx = randperm(1024); 
-   idx = idx(1); % Pick a random number between 1 and 1024
+   %idx = idx(1); % Pick a random number between 1 and 1024
+   idx = 1024 - mod(i, 1024);
    
    d(idx) = sgn(sum(W(idx,:) .* d))';
    
 %    if mod(i, 100) == 0
 %         vis(d);
-%         %waitforbuttonpress; 
+%         waitforbuttonpress; 
 %    end
 end
 
