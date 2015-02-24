@@ -6,12 +6,12 @@ pict; % Load data
 
 % Parameters
 N = 100;
-rho = 0.01; % Rate of active units
+rho = 0.05; % Rate of active units
 theta = 0.5; % Bias term
 iters = 5;
 
 % initial patterns
-maxNumPatterns = 50;
+maxNumPatterns = 70;
 
 % Create initial pattern and add it to X
 pattern = zeros(1, N);
@@ -34,9 +34,8 @@ for numPatterns=2:maxNumPatterns, numPatterns
     % Create weights with average of 0
     W = (X' - rho) * (X - rho);
     
-    
     successPerBias = [];
-    for bias=0:0.1:1
+    for bias=-1:0.5:1
         
         % find out how many registered patterns that can be restored
         numSuccessfull = 0;
@@ -67,12 +66,22 @@ for numPatterns=2:maxNumPatterns, numPatterns
     patternSizes = [patternSizes numPatterns];
 end
 
-myMap = rand(size(successRatios, 2), 3);
+myMap = [
+    0 0 0
+    0 0 1
+    0 1 0
+    0 1 1
+    1 0 0
+    1 0 1
+    1 1 0
+    1 1 1
+];
 
-plot((0.138 * 100), 1, '*r');
+%myMap = rand(size(successRatios, 2), 3);
+
+%plot((0.138 * 100), 1, '*r');
 hold on;
 for i=1:size(successRatios, 2)
-    i
     %patternSizes
     %successRatios(i)
     plot(patternSizes, successRatios(:, i), '-s', 'Color', myMap(i,:));
@@ -81,6 +90,6 @@ for i=1:size(successRatios, 2)
 end
 
 %plot(patternSizes, successRatios, (0.138 * 100), 1, '*r');
-xlabel('Pattern size');
+xlabel('Number of patterns');
 ylabel('Success Rate');
 axis([1 maxNumPatterns 0 1.1])
